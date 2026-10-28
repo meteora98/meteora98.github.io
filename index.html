@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Cat | Студия разработки</title>
+    <style>
+        /* Настройки цветов (темный фон и пастельно-фиолетовый акцент) */
+        :root {
+            --bg-color: #0f1115;
+            --surface-color: #1a1d24;
+            --text-primary: #f0f0f0;
+            --text-secondary: #9ba1a6;
+            --accent-color: #cba6f7; 
+            --accent-hover: #b48eed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth; /* Плавная прокрутка к секциям */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Шапка сайта с навигацией */
+        header {
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(15, 17, 21, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .logo img {
+            height: 100px;
+            margin-right: 15px;
+            filter: invert(1) contrast(1.2); 
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* Меню ссылок */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Главный экран (Hero) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 50px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            flex: 1.1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 20px;
+            /* Мягкое фиолетовое свечение вокруг картинки */
+            box-shadow: 0 10px 40px rgba(203, 166, 247, 0.15); 
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Общие стили для секций */
+        .section-container {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        /* Блок с проектами */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(203, 166, 247, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Секция: Как заказать */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(203, 166, 247, 0.1);
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .contact-block {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 900px) {
+            header {
+                padding: 15px 20px;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 120px 20px 50px;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                margin: 0 auto 30px;
+            }
+            .hero-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="errorcat_logo.png"> 
+            Error <span>Cat</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#projects">Проекты</a>
+            <a href="#order">Как заказать</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Инженерия цифровых решений</h1>
+            <p>Студия разработки мобильных приложений, технических утилит и быстрых веб-сайтов с бескомпромиссным подходом к Quality Intelligence.</p>
+            <a href="#projects" class="btn">Смотреть портфолио</a>
+        </div>
+        <div class="hero-image">
+            <img src="img_error_cat.jpg" alt="Error Cat Разработка">
+        </div>
+    </section>
+
+    <!-- Секция Проектов -->
+    <section class="section-container" id="projects">
+        <h2 class="section-title">Наши разработки</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>GrowCraft</h3>
+                <p>Приложение для повышения личной продуктивности (Android). Построено на базе Kotlin и Jetpack Compose с акцентом на современный UX и чистый интерфейс.</p>
+            </div>
+            <div class="card">
+                <h3>WristControl</h3>
+                <p>Умный интерфейс для смарт-часов (Wear OS). Позволяет осуществлять локальное управление смарт-устройствами и освещением прямо с запястья.</p>
+            </div>
+            <div class="card">
+                <h3>Hardware & Desktop</h3>
+                <p>Разработка связок программного обеспечения с аппаратными решениями, создание легковесных десктопных утилит и интерактивных интерфейсов.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция: Как заказать -->
+    <section class="section-container" id="order">
+        <h2 class="section-title">Как начать работу</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Обсуждение идеи</h3>
+                <p>Вы описываете свою задачу или идею проекта. Мы проводим первичный брифинг и обсуждаем ваши ожидания.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Анализ и оценка</h3>
+                <p>Мы погружаемся в логику продукта, формируем строгую архитектуру и рассчитываем точные сроки реализации и бюджет.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Разработка</h3>
+                <p>Пишем чистый, легковесный код, проектируем интерфейсы и показываем промежуточные этапы работы.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Тестирование и Релиз</h3>
+                <p>Строгий контроль качества перед запуском. Передача исходного кода, файлов проекта и помощь с развертыванием.</p>
+            </div>
+        </div>
+        <div class="contact-block">
+            <!-- Кнопка с вашей ссылкой на Google Forms -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYwfZpBnAA4b1Gh6A7fr0blU2CnOEMu_SM9jMFPrFb3xjwfQ/viewform?usp=header" target="_blank" class="btn">Оставить заявку</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Error Cat. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
