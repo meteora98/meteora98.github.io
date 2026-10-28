@@ -245,7 +245,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность для планшетов */
         @media (max-width: 900px) {
             header {
                 padding: 15px 20px;
@@ -268,13 +268,29 @@
                 width: 100%;
             }
         }
+
+        /* Адаптивность для мобильных телефонов (исправление меню в шапке) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+                padding-top: 20px;
+            }
+            header nav {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <a href="#" class="logo">
-            <img src="errorcat_logo.png"> 
+            <img src="errorcat_logo.png" alt="Error Cat Logo"> 
             Error <span>Cat</span>
         </a>
         <nav class="nav-links">
@@ -339,7 +355,6 @@
             </div>
         </div>
         <div class="contact-block">
-            <!-- Кнопка с вашей ссылкой на Google Forms -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYwfZpBnAA4b1Gh6A7fr0blU2CnOEMu_SM9jMFPrFb3xjwfQ/viewform?usp=header" target="_blank" class="btn">Оставить заявку</a>
         </div>
     </section>
