@@ -124,7 +124,6 @@
             max-width: 600px;
             height: auto;
             border-radius: 20px;
-            /* Мягкое фиолетовое свечение вокруг картинки */
             box-shadow: 0 10px 40px rgba(203, 166, 247, 0.15); 
             transition: transform 0.3s ease;
         }
@@ -274,14 +273,19 @@
             header {
                 flex-direction: column !important;
                 align-items: center !important;
-                text-align: center;
-                padding-top: 20px;
+                padding-top: 15px;
+                padding-bottom: 10px;
             }
             header nav {
-                margin-top: 15px;
+                margin-top: 10px;
                 display: flex;
-                justify-content: center;
-                gap: 20px;
+                width: 100%;
+                justify-content: flex-end; /* Сдвигает меню правее */
+                padding-right: 20px; /* Отступ от правого края экрана */
+                gap: 15px; /* Уменьшает расстояние между ссылками */
+            }
+            .nav-links a {
+                font-size: 0.85rem; /* Делает шрифт разделов меньше */
             }
         }
     </style>
