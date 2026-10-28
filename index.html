@@ -124,6 +124,7 @@
             max-width: 600px;
             height: auto;
             border-radius: 20px;
+            /* Мягкое фиолетовое свечение вокруг картинки */
             box-shadow: 0 10px 40px rgba(203, 166, 247, 0.15); 
             transition: transform 0.3s ease;
         }
@@ -268,24 +269,35 @@
             }
         }
 
-        /* Адаптивность для мобильных телефонов (исправление меню в шапке) */
+        /* Адаптивность для мобильных телефонов (лого слева, ссылки справа в колонку) */
         @media (max-width: 768px) {
             header {
-                flex-direction: column !important;
-                align-items: center !important;
-                padding-top: 15px;
-                padding-bottom: 10px;
-            }
-            header nav {
-                margin-top: 10px;
                 display: flex;
-                width: 100%;
-                justify-content: flex-end; /* Сдвигает меню правее */
-                padding-right: 20px; /* Отступ от правого края экрана */
-                gap: 15px; /* Уменьшает расстояние между ссылками */
+                flex-direction: row !important; /* Оставляем шапку в один горизонтальный ряд */
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 10px 20px; /* Делаем шапку чуть компактнее */
             }
+            
+            /* Немного уменьшаем логотип для мобильных, чтобы освободить место тексту */
+            .logo {
+                font-size: 1.2rem;
+            }
+            .logo img {
+                height: 60px; 
+                margin-right: 10px;
+            }
+
+            /* Выстраиваем ссылки друг под другом и прижимаем вправо */
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Прижимаем текст к правому краю */
+                gap: 5px; /* Расстояние между ссылками по вертикали */
+            }
+
             .nav-links a {
-                font-size: 0.85rem; /* Делает шрифт разделов меньше */
+                font-size: 0.9rem; /* Размер текста ссылок */
             }
         }
     </style>
